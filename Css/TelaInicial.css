@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+body {
+  margin: 0;
+  background-color: #050916;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.header {
+    position: fixed;
+    top: 50%;
+    left: 80px;         /* Espaço em relação à lateral esquerda da tela */
+    transform: translateY(-50%); /* Centralização vertical */
+    z-index: 10;
+}
+
+.sidebar {
+  background-color: #0D4DA1;
+  border-radius: 9999px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 0;
+  gap: 2rem;
+  width: 5rem;
+}
+
+.sidebar .nome_usuario {
+  color: white;
+  font-weight: 700;
+  font-size: 0.875rem;
+  user-select: none;
+}
+
+.sidebar button {
+  width: 3rem;
+  height: 3rem;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar button.btn-home {
+  background-color: black;
+  border-radius: 9999px;
+  font-size: 1.5rem;
+}
+
+.main-content {
+    margin-left: 120px; /* Valor = largura da sidebar (80px) + margem (40px) */
+    padding: 2rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titulo {
+  text-align: center;
+  font-weight: 700;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  user-select: none;
+}
+
+
+/* Container principal que agrupa o gráfico */
+
+.graph-pai {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Contêiner principal que envolve o gráfico e o ícone de tooltip */
+
+.container-graph {
+    position: relative;
+    width: 288px;
+}
+
+.container {
+    width: 288px; /* Largura fixa (72px * 4) */
+    padding: 1rem; /* Espaçamento interno de 16px */
+  }
+  
+  /* Área que representa o medidor (semicírculo) */
+  .gauge {
+    position: relative; /* Define o posicionamento relativo para posicionar filhos absolutos */
+    width: 288px;
+    height: 144px; /* Metade da largura para formar o semicírculo */
+  }
+  
+  /* Parte externa do semicírculo (cor de fundo do medidor) */
+  .outer-semicircle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 288px;
+    height: 144px;
+    background-color: #44b4d1; /* Cor azul clara */
+    border-top-left-radius: 144px; /* Arredonda a parte superior esquerda */
+    border-top-right-radius: 144px; /* Arredonda a parte superior direita */
+  }
+  
+  /* Parte interna que "recorta" o centro do medidor, criando a borda */
+  .inner-semicircle {
+    position: absolute;
+    top: 32px; /* Desloca para baixo para criar espessura da borda */
+    left: 32px; /* Desloca da esquerda para centralizar */
+    width: 224px; /* Largura menor que a externa */
+    height: 112px;
+    background-color: #05081a; /* Mesmo fundo da página, criando o recorte */
+    border-top-left-radius: 112px;
+    border-top-right-radius: 112px;
+  }
+  
+  /* Agulha do medidor */
+  .needle {
+    position: absolute;
+    bottom: 0; /* Começa na base do gauge */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translateX(-50%) rotate(20deg); /* Move para o centro e rotaciona */
+    transform-origin: bottom center; /* A rotação ocorre em torno do centro inferior */
+    width: 16px;
+    height: 130px; /* Atinge 2/3 da altura do gauge */
+    background-color: #7de0e9; /* Cor azul claro da agulha */
+    border-radius: 9999px; /* Deixa a agulha com cantos completamente arredondados */
+  }
+  
+  /* Container dos rótulos laterais do gauge */
+  .labels {
+    margin-top: 0.5em; /* Espaço acima */
+    width: 100%;
+    display: flex; /* Flexbox para distribuir os rótulos */
+    justify-content: space-between; /* Um rótulo à esquerda e outro à direita */
+    color: white; /* Cor do texto */
+    font-size: 1.125rem; /* Tamanho de fonte (equivalente a "text-lg" do Tailwind) */
+    user-select: none; /* Impede o usuário de selecionar o texto */
+    padding: 0 0.5rem;
+  }
+  
+  /* Estilo dos rótulos esquerdo e direito */
+  .left-label,
+  .right-label {
+    font-family: 'Fredoka One', cursive; /* Garante que use a mesma fonte estilizada */
+  }
+  
+  
+  /* ------------------------ TOOL TIPS ------------------------ */
+
+  /* Contêiner do ícone de tooltip (ex: um ícone de interrogação) */
+  .father-tips {
+      position: absolute; /* Posiciona o ícone em relação ao .container-graph */
+      top: 10px; /* Distância do topo do contêiner */
+      right: -35px; /* Distância da borda direita do contêiner */
+      width: 35px; /* Largura do botão/ícone */
+      height: 35px; /* Altura do botão/ícone */
+  }
+  
+  /* Estilização da área clicável do ícone de tooltip */
+  .tooltip {
+      position: relative;
+      margin-bottom: 20px; /* Permite posicionar o texto do tooltip em relação a este contêiner */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%; /* Deixa o ícone com formato circular */
+      cursor: pointer; /* Muda o cursor para indicar interatividade */
+      top: -5px;
+      left: 1000%;
+  }
+  
+  /* Caixa de texto do tooltip (visível ao passar o mouse) */
+  .tooltip .tooltiptext {
+      visibility: hidden; /* Esconde o tooltip por padrão */
+      opacity: 0; /* Transparente por padrão */
+      min-width: 500px; /* Largura mínima do tooltip */
+      background-color: #EFEAFA; /* Cor de fundo clara */
+      border: 2px solid white; /* Borda com cor definida por variável CSS */
+      text-align: center;
+      padding: 16px; /* Espaçamento interno com variável */
+      border-radius: 6px; /* Cantos arredondados */
+      position: absolute; /* Posicionamento absoluto em relação ao .tooltip */
+      transition: visibility 0s linear 0.5s, opacity 0.5s linear; /* Animação suave na exibição */
+      z-index: 999; /* Garante que fique acima de outros elementos */
+  
+      /* Posiciona a caixa acima do botão */
+      bottom: 110%; /* Posiciona acima do botão/ícone */
+      left: 50%; /* Centraliza horizontalmente */
+      transform: translateX(-50%); /* Corrige para o centro exato */
+      color: black;
+  }
+  
+  /* Exibe o tooltip ao passar o mouse sobre o ícone */
+  .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+      transition-delay: 0s, 0s; /* Remove atraso na transição ao exibir */
+  }
+  
+  /* Variação com tema roxo (fundo roxo e texto branco) */
+  .tooltip-white {
+      border: 3px solid white; /* Borda branca */
+      color: white; /* Cor do texto */
+  }
+   

@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+body {
+  margin: 0;
+  background-color: #070B1E;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+
+.header {
+    position: fixed;
+    top: 50%;
+    left: 80px;
+    /* Espaço em relação à lateral esquerda da tela */
+    transform: translateY(-50%);
+    /* Centralização vertical */
+    z-index: 10;
+}
+
+.sidebar {
+    background-color: #0D4DA1;
+    border-radius: 9999px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 0;
+    gap: 2rem;
+    width: 5rem;
+}
+
+.sidebar .nome_usuario {
+    color: white;
+    font-weight: 1700;
+    font-size: 0.875rem;
+    user-select: none;
+}
+
+.sidebar button {
+    width: 3rem;
+    height: 3rem;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar button.btn-home {
+    background-color: black;
+    border-radius: 9999px;
+    font-size: 1.5rem;
+}
+
+.main-content {
+    margin-left: 120px;
+    /* Valor = largura da sidebar (80px) + margem (40px) */
+    padding: 2rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 22px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.icon.active {
+    background-color: black;
+}
+
+/* Main content and side buttons container */
+.main-content {
+  display: flex;
+  width: 100%;
+  max-width: 80rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .main-content {
+    flex-direction: row;
+  }
+}
+
+/* Main area */
+main {
+  flex: 1 1 0;
+  max-width: 48rem;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: white;
+  font-weight: 600;
+  font-size: 1.25rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  user-select: none;
+}
+
+.chart-container {
+  background-color: #0B0E1F;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  height: 280px;
+  position: relative;
+}
+
+/* Side buttons */
+.side-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 120px;
+}
+
+.side-buttons button {
+  background-color: #0652C5;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  user-select: none;
+  transition: background-color 0.2s ease;
+  text-align: center;
+}
+
+.side-buttons button:hover {
+  background-color: #0a6ad1;
+}

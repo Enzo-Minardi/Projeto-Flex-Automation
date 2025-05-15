@@ -1,0 +1,96 @@
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/isolated.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="shortcut icon" href="assets/svg/logo-white.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="./Css/TelaInicial.css" />
+    <title>Consumo Total</title>
+</head>
+
+<body>
+    <div class="header">
+        <nav class="sidebar" aria-label="Navegação lateral">
+            <span id="nome_usuario" class="">Nome</span>
+            <button class="btn-home" aria-label="telainicial">
+                <i class="fas fa-home"></i>
+            </button>
+            <button aria-label="consumomensal">
+                <i class="fas fa-chart-bar"></i>
+            </button>
+            <button aria-label="podio">
+                <i class="fas fa-trophy"></i>
+            </button>
+            <button aria-label="recompensas">
+                <i class="fas fa-award"></i>
+            </button>
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <h1 class="titulo">Consumo Total</h1>
+        <div class="graph-pai">
+            <div class="container-graph">
+                <div class="gauge">
+                    <div class="outer-semicircle"></div>
+                    <div class="inner-semicircle"></div>
+                    <div class="needle"></div>
+                </div>
+                <div class="labels">
+                    <span class="left-label">0 kwh</span>
+                    <span class="right-label">394 kwh</span>
+                </div>
+                <div class="father-tips">
+                    <div class="tooltip tooltip-white">
+                        <h4>i</h4>
+                        <span class="tooltiptext text-black">
+                            Uma breve indicação do estado da rede (Estável/Oscilante/Instável), calculado com base na
+                            perda
+                            de pacotes.
+                            Para mais detalhes do monitoramento, clique no botão abaixo.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+<script>
+      const path = window.location.pathname.toLowerCase();
+
+document.querySelectorAll('.sidebar button').forEach(button => {
+  const label = button.getAttribute('aria-label')?.toLowerCase();
+
+  if (
+    (path.includes("telainicial") && label === "telainicial") ||
+    (path.includes("consumomensal") && label === "consumomensal") ||
+    (path.includes("podio") && label === "podio") ||
+    (path.includes("recompensas") && label === "recompensas")
+  ) {
+    button.classList.add("active");
+  }
+});
+
+
+const buttonRoutes = {
+  telainicial: 'TelaInicial.html',
+  consumomensal: 'ConsumoMensal.html',
+  podio: 'podio.html',
+  recompensas: 'recompensas.html'
+};
+
+document.querySelectorAll('.sidebar button').forEach(button => {
+  button.addEventListener('click', () => {
+    const page = button.getAttribute('aria-label');
+    if (page && buttonRoutes[page]) {
+      window.location.href = buttonRoutes[page];
+    }
+  });
+});
+
+</script>
+
+</html>
